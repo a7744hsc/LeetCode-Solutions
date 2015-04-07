@@ -1,3 +1,9 @@
+
+/**
+ * @author shengchang
+ * All the questions are solved here through imdependent methods
+ *
+ */
 public class Solution {
 	
     private static final int maxDiv10=Integer.MAX_VALUE/10;// a static value used for atoi
