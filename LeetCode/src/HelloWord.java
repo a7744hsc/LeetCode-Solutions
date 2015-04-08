@@ -14,7 +14,6 @@ public class HelloWord {
 	
 	
 
-
 	public static void main(String[] args) {
 		Solution solution=new Solution();
 		String str ="       -11919730356x"; 
