@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * @author shengchang
@@ -7,6 +10,29 @@
 public class Solution {
 	
     private static final int maxDiv10=Integer.MAX_VALUE/10;// a static value used for atoi
+    List<Integer> list=new ArrayList<Integer>();//a field 
+    
+    
+    
+    
+    
+    
+    /**
+     * @author shengchang
+     * @param root 要遍历的树的根节点
+     * @return list 按前序遍历排列的表
+     * @see 这段代码完成的并不漂亮，因为用到了一个实例变量，但是使用迭代的写法比较简洁。
+     */
+    public List<Integer> preorderTraversal(TreeNode root) {
+        if(root!=null){
+            list.add(root.val);
+            if(root.left!=null)preorderTraversal(root.left);
+            if(root.right!=null)preorderTraversal(root.right);
+        }
+        return list;
+        
+    }
+    
 	/**
 	 * @author shengchang
 	 * @param str  一个任意字符串
