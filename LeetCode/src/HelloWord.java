@@ -8,14 +8,12 @@ import java.util.Random;
 import java.util.Scanner;
 
 
-
+//for branch 0.1
 
 public class HelloWord {
 	
 	
-	 static{
-		System.out.println("haha");
-	}
+
 
 	public static void main(String[] args) {
 		Solution solution=new Solution();
