@@ -1,6 +1,10 @@
 package com.hsc.leetcode;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -17,6 +21,23 @@ public class Solution {
     
     
     
+    public int lengthOfLongestSubstring(String s) {
+    	Map<Character, Integer> charMap=new HashMap<>();
+    	int maxLength=0,startpoint=0;
+    	for(int i=0;i<s.length();i++){
+    		if(charMap.containsKey(s.charAt(i))){
+    			if(charMap.get(s.charAt(i))>=startpoint){
+    				startpoint=charMap.get(s.charAt(i))+1;
+    			}
+    			charMap.put(s.charAt(i), i);
+    		}
+    		else {
+				charMap.put(s.charAt(i), i);
+			}
+    		maxLength=Math.max(i-startpoint+1, maxLength);
+    	}
+    	return maxLength;
+    }
     
     /**
      * @author shengchang
