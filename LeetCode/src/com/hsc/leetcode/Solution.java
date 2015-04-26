@@ -19,6 +19,86 @@ public class Solution {
     
     
     
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+		if (nums1.length < nums2.length)
+			return findMedianSortedArrays(nums2, nums1);// 保持nums2比较小
+		boolean isEven = (nums1.length + nums2.length) % 2 == 0 ? true : false;
+		if(nums2.length==0){
+			if(isEven)
+				return (double)(nums1[nums1.length/2]+nums1[nums1.length/2-1])/2;
+			else 
+				return nums1[nums1.length/2];
+		}
+		
+
+		int head2 = 0, tail2 = nums2.length - 1;
+		int half = (nums1.length + nums2.length) / 2;
+		int mid1, mid2;
+
+		while (tail2 >= head2) {
+			mid2 = (tail2 + head2) / 2;
+			mid1 = half - mid2;
+			if (mid1 > 0 && nums1[mid1 - 1] > nums2[mid2]) {// mid1更小
+				// head1 += (tail2 - head2) / 2;
+				head2 = mid2 + 1;
+
+			} else if (mid2 > 0 && nums1[mid1] < nums2[mid2 - 1]) {
+				// tail1 -= (tail2 - head2) / 2;
+				tail2 = mid2 - 1;
+			} else {// 此时mid2为右侧第一个；
+
+				if (isEven) {
+					int n1, n2;
+					if (mid2 > 0)
+						n1 = Math.max(nums1[mid1 - 1], nums2[mid2 - 1]);
+					else {
+						n1 = nums1[mid1 - 1];
+					}
+					if (mid1 < nums1.length)
+						n2 = Math.min(nums1[mid1], nums2[mid2]);
+					else
+						n2 = nums2[mid2];
+					return (double) (n1 + n2) / 2;
+
+				} else {
+					return (double) Math.min(nums2[mid2], nums1[mid1]);
+				}
+
+			}
+		}
+		if (head2 >= nums2.length) {// 2全在左边
+			if (isEven) {
+				int n1;
+				if(half-1-nums2.length<0)
+					n1=nums2[nums2.length-1];
+				else 
+					n1 = Math.max(nums1[half - 1 - nums2.length],nums2[nums2.length-1]);
+				
+				int n2 = nums1[half - nums2.length];
+				return (double) (n1 + n2) / 2;
+			} else {
+				return nums1[half - nums2.length];
+			}
+
+		} else if (tail2 < 0) { // nums2全在右边
+			if (isEven) {
+				int n1 = nums1[half - 1];
+				
+				int n2;
+				if(half>=nums1.length)
+					n2= nums2[0];
+				else 
+					n2=Math.min(nums1[half],nums2[0]);
+				
+				return (double) (n1 + n2) / 2;
+			} else {
+				return Math.min(nums1[half],nums2[0]);
+			}
+
+		}
+
+		return 0;
+    }
     
     
     public int lengthOfLongestSubstring(String s) {
