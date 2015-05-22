@@ -19,10 +19,39 @@ public class Solution {
     
     
     
+    public String shortestPalindrome(String s) {
+        int sLength=s.length();
+        int tail=0;
+        while(tail<sLength){
+            if( isaPalindrome( s.substring(0,sLength-tail) ) )
+                break;
+            tail++;
+        }
+        StringBuilder sb=new StringBuilder();
+        
+        for(int j=0;j<tail;j++)
+        	sb.append(s.charAt(sLength-1-j));
+        sb.append(s);
+        return sb.toString();
+        
+    }
+    
+    
+    private boolean isaPalindrome(String s){    //a private method used in shortestPalindrome
+        int sLength=s.length();
+        for(int i=0;i<sLength/2;i++){
+            if(s.charAt(i)!=s.charAt(sLength-i-1) )
+                return false;
+        }
+        return true;
+    }
+    
+    
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
 		if (nums1.length < nums2.length)
 			return findMedianSortedArrays(nums2, nums1);// 保持nums2比较小
 		boolean isEven = (nums1.length + nums2.length) % 2 == 0 ? true : false;
+		
 		if(nums2.length==0){
 			if(isEven)
 				return (double)(nums1[nums1.length/2]+nums1[nums1.length/2-1])/2;

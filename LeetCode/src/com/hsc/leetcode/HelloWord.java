@@ -17,13 +17,9 @@ public class HelloWord {
 
 	public static void main(String[] args) {
 		Solution solution=new Solution();
-		String str ="       -11919730356x"; 
+		String str ="aacecaaa";
+		System.out.println(solution.shortestPalindrome(str));
 		
-		if(str==""||str==null)
-	            System.out.println("nulll");
-		else {
-			System.out.println(solution.atoi(str));
-		}
 			
 		}
 			
